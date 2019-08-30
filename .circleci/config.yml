@@ -1,0 +1,41 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/opt
+    docker: # use the docker executor type; machine and macos executors are also supported
+      - image: circleci/python:3.6.8-jessie
+    steps:
+      - checkout # check out the code in the project directory
+      - run:
+          name: install dependencies
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install -r package.txt
+      - run:
+          name: run test
+          command: |
+            . venv/bin/activate
+            python -m pytest --junitxml=test-reports/junit.xml
+      - store-test-results: #  These results will display in the Test Summary section
+          path: test-reports
+      - run:
+          name: run test-cov
+          command: |
+            . venv/bin/activate
+            python -m pytest --cov=source
+            # pytest --cov=source --cov-report=html:test-reports
+            # pytest --cov=source --cov-report=xml:test-reports
+
+
+workflows:
+  version: 2
+  dev_stage_pre-prod:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only:
+                - master
+                - develop
+                - /issue-.*/
