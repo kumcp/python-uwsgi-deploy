@@ -1,0 +1,16 @@
+.content-area {
+    padding: 1em;
+}
+
+.page-title {
+    text-transform: uppercase;
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.flash-message {
+    min-height: 2em;
+    max-height: 2em;
+    width: 100%;
+}

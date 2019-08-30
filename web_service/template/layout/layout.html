@@ -1,0 +1,18 @@
+<html>
+    <head>
+        {% block head %}
+        <title>{% block title %} {% endblock %}</title>
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', filename='css/common.css') }}"
+        />
+        <script src="{{ url_for('static', filename='js/common.js') }}"></script>
+        {% endblock %}
+    </head>
+    <body>
+        {% block content %}{% endblock %}
+        {% block footer %}
+            {% include "block/footer.html" ignore missing without context %}
+        {% endblock %}
+    </body>
+</html>

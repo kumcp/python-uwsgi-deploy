@@ -1,0 +1,8 @@
+<div class="form-group">
+    <label for="{{ selector_id }}">{{ selector_title }}</label>
+    <select class="form-control" id="{{ selector_id }}" name="{{ selector_id }}">
+        {% for item in items: %}
+            <option value="{{ item.value }}">{{ item.name }}</option>
+        {% endfor %}
+    </select>
+  </div>

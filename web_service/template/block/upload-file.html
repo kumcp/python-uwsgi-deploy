@@ -1,0 +1,25 @@
+<div class="update-box">
+    <div class="input-group mb-3">
+        <div class="custom-file">
+            <input
+                type="file"
+                class="custom-file-input common-file-upload"
+                name="{{ file_input_name }}"
+            />
+            <label
+                class="custom-file-label"
+                for="inputGroupFile02"
+                aria-describedby="inputGroupFileAddon02"
+                tag="{{ file_input_name }}"
+                >{{ label_text }}</label
+            >
+        </div>
+        <div class="input-group-append">
+            <span
+                class="input-group-text"
+                onclick="{{ on_upload_clicked }}"
+                >{{ button_text }}</span
+            >
+        </div>
+    </div>
+</div>
