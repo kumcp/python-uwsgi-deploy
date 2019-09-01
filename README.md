@@ -67,7 +67,7 @@ $ sudo apt-get install libmysqlclient-dev python-mysqldb
 
 ## 2. Run as standalone script (offline)
 
-### 2.1 Run as script
+If you have a separate file, for example call `execute.py`
 
 ```
 python execute.py
