@@ -1,0 +1,27 @@
+[uwsgi]
+
+project=<project-name>
+uid = <username></username>
+base = /project/path/%(uid)/project
+
+chdir = /path/to/project/folder (contain wsgi file)
+home = /path/to/env
+
+# Run as wsgi file individually
+wsgi-file = wsgi.py 
+callable = app
+
+# module = wsgi:app
+
+# log
+# daemonize = %(chdir)/log.txt
+
+enable-threads = True
+processes = 2
+threads = 2
+# harakiri = 30
+socket = app.sock        # Place to put the *.sock file. This file will be similar as a port between nginx -> uwsgi
+chmod-socket = 666
+vacuum = true
+
+die-on-term = true

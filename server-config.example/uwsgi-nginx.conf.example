@@ -1,0 +1,45 @@
+# put this or link this to /etc/nginx/site-enabled
+
+upstream flask {
+	
+	# use sock file created by uwsgi
+    server unix:///path/to/sock/file.sock;
+	
+}
+
+
+server {
+    # the port your site will be served on
+    listen      80;
+	listen		443;
+	
+	ssl on;
+
+	server_name example.com;
+	ssl_certificate	/path/to/crt/file.crt;
+	ssl_certificate_key /path/to/key/file.key;
+
+
+    # the domain name it will serve for
+    server_name localhost; # substitute your machine's IP address or FQDN
+    charset     utf-8;
+
+   # max upload size
+    client_max_body_size 75M; 
+
+   
+
+   location /static {
+       # Link to the static folder of the project
+        alias /path/to/project/web-service/static; 
+    }
+
+    location / {
+        uwsgi_pass  flask;  # Specific flask as uwsgi pass
+        include     /etc/nginx/uwsgi_params;
+    }
+
+	location ~ /.well-known {
+		allow all;
+	}
+}
